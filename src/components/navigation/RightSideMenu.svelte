@@ -1,14 +1,14 @@
 <script lang="ts">
-  export let logged: boolean = false;
-  export let segment: string | undefined;
+  import type { User } from "../../interfaces/User";
+  import { format } from "svelte-i18n";
 
-  import { goto } from "@sapper/app";
+  export let segment: string;
+  export let user: User;
 
   import Bell from "../../icons/Bell.svelte";
   import Dropdown from "../../helpers/Dropdown.svelte";
 
   let dropdownTrigger: Element;
-  const loginHandler = async () => await goto("/login");
 </script>
 
 <style lang="scss">
@@ -57,7 +57,7 @@
 <div
   class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static
     sm:inset-auto sm:ml-6 sm:pr-0">
-  {#if logged}
+  {#if user}
     <button
       class="p-1 border-2 border-transparent text-gray-400 rounded-full
         hover:text-gray-500 focus:outline-none focus:text-gray-500
@@ -77,7 +77,7 @@
           aria-expanded="false">
           <img
             class="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            src={user.profile_image_url}
             alt="" />
         </button>
 
@@ -87,31 +87,33 @@
           slot="DropdownMenu"
           aria-orientation="vertical"
           aria-labelledby="user-menu">
-          <!-- <a href="/" class="dropdown__item" role="menuitem">Your Profile</a>
-          <a href="/" class="dropdown__item" role="menuitem">Settings</a>
-          <a href="/" class="dropdown__item" role="menuitem">Sign out</a> -->
           <a
             aria-current={segment === 'profile' ? 'page' : undefined}
             href="profile"
+            role="menuitem"
             class="dropdown__item">
-            profile
+            {$format('controls.profile')}
           </a>
-          <a rel="external" href="/auth/logout" class="dropdown__item">
-            logout
+          <a
+            rel="external"
+            href="/auth/logout"
+            class="dropdown__item"
+            role="menuitem">
+            {$format('controls.logout')}
           </a>
         </div>
       </Dropdown>
     </div>
   {:else}
-    <button
-      on:click={loginHandler}
-      type="button"
+    <a
+      rel="external"
+      href="/auth/login"
       class="relative inline-flex items-center px-4 py-2 border
         border-transparent text-sm leading-5 font-medium rounded-md text-white
         bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none
         focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700
         transition ease-in-out duration-150">
-      Login
-    </button>
+      {$format('controls.login')}
+    </a>
   {/if}
 </div>

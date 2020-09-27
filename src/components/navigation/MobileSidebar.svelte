@@ -1,3 +1,7 @@
+<script lang="ts">
+  export let segment: string;
+</script>
+
 <style lang="scss">
   .link {
     @apply mt-1;
@@ -40,9 +44,9 @@
 
 <div class="sm:hidden">
   <div class="pt-2 pb-4">
-    <a href="/" class="link active">Dashboard</a>
-    <a href="/" class="link">Team</a>
-    <a href="/" class="link">Projects</a>
-    <a href="/" class="link">Calendar</a>
+    <a
+      href="/"
+      class="link"
+      class:active={segment === undefined || segment === ''}>Dashboard</a>
   </div>
 </div>

@@ -8,6 +8,8 @@ import config from "sapper/config/rollup";
 import svelte from "rollup-plugin-svelte";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
+import dotenv from "dotenv";
+dotenv.config();
 
 import pkg from "./package.json";
 
@@ -37,7 +39,9 @@ export default {
 			replace({
 				"process.browser": true,
 				"process.env.NODE_ENV": JSON.stringify(mode),
+				"process.env.API_BASE_URL": JSON.stringify(process.env.API_BASE_URL),
 			}),
+			json(),
 			svelte({
 				dev,
 				hydratable: true,
@@ -55,7 +59,6 @@ export default {
 				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
 			}),
-			json(),
 
 			legacy && babel({
 				extensions: [".js", ".mjs", ".html", ".svelte"],
@@ -92,6 +95,7 @@ export default {
 				"process.env.NODE_ENV": JSON.stringify(mode),
 				"module.require": "require",
 			}),
+			json(),
 			svelte({
 				generate: "ssr",
 				dev,
@@ -108,7 +112,6 @@ export default {
 				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
 			}),
-			json(),
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require("module").builtinModules || Object.keys(process.binding("natives")), // eslint-disable-line global-require

@@ -10,12 +10,9 @@ const cached = new Set(toCache);
 
 self.addEventListener("install", <EventType extends ExtendableEvent>(event: EventType) => {
 	event.waitUntil(
-		caches
-			.open(ASSETS)
-			.then((cache) => cache.addAll(toCache))
-			.then(() => {
-				(self as any as ServiceWorkerGlobalScope).skipWaiting();
-			}),
+		caches.open(ASSETS).then((cache) => cache.addAll(toCache)).then(() => {
+			(self as any as ServiceWorkerGlobalScope).skipWaiting();
+		}),
 	);
 });
 
@@ -65,19 +62,17 @@ self.addEventListener("fetch", <EventType extends FetchEvent>(event: EventType) 
 	// cache if the user is offline. (If the pages never change, you
 	// might prefer a cache-first approach to a network-first one.)
 	event.respondWith(
-		caches
-			.open(`offline${timestamp}`)
-			.then(async (cache) => {
-				try {
-					const response = await fetch(event.request);
-					cache.put(event.request, response.clone());
-					return response;
-				} catch (err) {
-					const response = await cache.match(event.request);
-					if (response) return response;
+		caches.open(`offline${timestamp}`).then(async (cache) => {
+			try {
+				const response = await fetch(event.request);
+				cache.put(event.request, response.clone());
+				return response;
+			} catch (err) {
+				const response = await cache.match(event.request);
+				if (response) return response;
 
-					throw err;
-				}
-			}),
+				throw err;
+			}
+		}),
 	);
 });
