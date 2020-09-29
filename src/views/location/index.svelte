@@ -1,26 +1,28 @@
 <script lang="ts">
-  import { format } from "svelte-i18n";
-  import type { Location as ILocatiion } from "../../../interfaces/Location";
-  import Input from "../../../helpers/Input.svelte";
-  import * as api from "../../../api";
+  import { format } from 'svelte-i18n'
 
-  export let location: ILocatiion;
-  export let token: string;
+  import type { Location as ILocatiion } from '../../interfaces/Location'
 
-  let { city, street, house, corps, entrance, floor, flat } = location;
+  import Input from '../../helpers/Input.svelte'
+  import * as api from '../../api'
+
+  export let location: ILocatiion
+  export let token: string
+
+  let { city, street, house, corps, entrance, floor, flat } = location
 
   async function handleSubmit() {
     await api.location.updateLocation(
       { city, street, house, corps, entrance, floor, flat },
       token
-    );
+    )
   }
 </script>
 
 <section class="rounded overflow-hidden shadow-lg border relative my-6">
   <div class="bg-gray-50 p-6 border-b">
     <h2 class="text-lg leading-6 font-medium text-gray-900">
-      {'location.title'}
+      {$format('location.title')}
     </h2>
   </div>
   <form on:submit|preventDefault={handleSubmit} class="px-6">
@@ -85,12 +87,7 @@
     </div>
     <div class="flex flex-wrap -mx-3 my-6">
       <div class="w-full md:w-1/3 px-3 m-auto text-center">
-        <button
-          class="bg-white hover:bg-gray-100 text-gray-600 font-normal py-2 px-4
-            border border-gray-400 rounded shadow focus:outline-none
-            focus:border-indigo-300 focus:shadow-outline-indigo
-            active:bg-gray-50 transition duration-150 ease-in-out"
-          type="submit">
+        <button class="confirm-button" type="submit">
           {$format('location.verify')}
         </button>
       </div>

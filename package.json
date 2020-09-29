@@ -8,7 +8,9 @@
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
-    "start": "node __sapper__/build"
+    "start": "node __sapper__/build",
+    "fix": "npx eslint --fix \"{,!(node_modules|public|__sapper__)/**/}*.{js,svelte}\"",
+    "format": "npx prettier --write \"{,!(node_modules|public|__sapper__)/**/}*.{js,svelte}\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -33,7 +35,7 @@
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/runtime": "^7.11.2",
-    "@popperjs/core": "^2.5.2",
+    "@popperjs/core": "^2.5.3",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -51,17 +53,24 @@
     "@types/node-fetch": "^2.5.7",
     "@types/passport": "^1.0.4",
     "@types/redis": "^2.8.27",
-    "autoprefixer": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "autoprefixer": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",
+    "eslint": "^7.10.0",
+    "eslint-plugin-svelte3": "^2.7.3",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^8.0.0",
-    "postcss-load-config": "^2.1.1",
+    "postcss-load-config": "^2.1.2",
+    "prettier": "^2.1.2",
+    "prettier-plugin-svelte": "^1.4.0",
     "rollup": "^2.28.2",
     "rollup-plugin-svelte": "^6.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "sapper": "^0.28.9",
     "sass": "^1.26.11",
-    "svelte": "^3.28.0",
+    "svelte": "^3.29.0",
     "svelte-preprocess": "^4.3.2",
     "tailwindcss": "^1.8.10",
     "tslib": "^2.0.1",
@@ -69,6 +78,6 @@
   },
   "peerDependencies": {
     "@fullhuman/postcss-purgecss": "^3.0.0",
-    "postcss": "^8.0.9"
+    "postcss": "^8.1.1"
   }
 }

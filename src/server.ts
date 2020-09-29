@@ -52,7 +52,7 @@ app.get("/auth/twitch/callback", passport.authenticate("twitch", { successRedire
 
 app.get("/auth/logout", (req, res) => {
 	req.logout();
-	req.session!.destroy((err) => res.redirect("/"));
+	req.session?.destroy((err) => res.redirect("/"));
 });
 app.use(sapperMiddleware({ session: (req: any) => ({ user: (req.session?.passport?.user) }) }));
 

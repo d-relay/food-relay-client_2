@@ -1,20 +1,22 @@
 module.exports = {
-    future: {
-        removeDeprecatedGapUtilities: true,
-        purgeLayersByDefault: true,
+  experimental: {
+    applyComplexClasses: true,
+    uniformColorPalette: true,
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
+  purge: {
+    layers: ['utilities'],
+    content: ['./src/**/*.svelte'],
+    options: {
+      keyframes: true,
     },
-    purge: {
-        layers: ['utilities'],
-        content: ["./src/**/*.svelte"],
-        options: {
-            keyframes: true
-        }
-    },
-    theme: {
-        extend: {},
-    },
-    variants: {},
-    plugins: [
-        require('@tailwindcss/ui')
-    ],
+  },
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [require('@tailwindcss/ui')],
 }

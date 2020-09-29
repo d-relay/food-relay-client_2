@@ -7,7 +7,6 @@ export function getCookie(name: string, cookies?: string | null) {
         }
         cookies = document.cookie;
     }
-
     const kv = cookies.split(';').find((part) => part.trim().startsWith(name));
 
     if (!kv) return undefined;

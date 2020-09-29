@@ -1,18 +1,19 @@
 <script lang="ts">
-  import { stores } from "@sapper/app";
-  import Hamburger from "../icons/Hamburger.svelte";
-  import LeftSideMenu from "./navigation/LeftSideMenu.svelte";
-  import RightSideMenu from "./navigation/RightSideMenu.svelte";
-  import MobileSidebar from "./navigation/MobileSidebar.svelte";
+  import { stores } from '@sapper/app'
+  import Hamburger from '../../icons/Hamburger.svelte'
 
-  export let segment: string;
+  import LeftSideMenu from './LeftSideMenu.svelte'
+  import RightSideMenu from './RightSideMenu.svelte'
+  import MobileSidebar from './MobileSidebar.svelte'
 
-  const { session } = stores();
-  let mobileMenuOpen: boolean = false;
-  let user = $session.user;
+  export let segment: string
+
+  const { session } = stores()
+  let mobileMenuOpen: boolean = false
+  let user = $session.user
   function handle_keydown(e: any) {
-    if (e.key === "Escape") {
-      return (mobileMenuOpen = false);
+    if (e.key === 'Escape') {
+      return (mobileMenuOpen = false)
     }
   }
 </script>
@@ -96,12 +97,12 @@
           <Hamburger open={mobileMenuOpen} />
         </button>
       </div>
-      <LeftSideMenu {segment}/>
+      <LeftSideMenu {segment} />
       <RightSideMenu {user} {segment} />
     </div>
   </div>
 
   {#if mobileMenuOpen}
-    <MobileSidebar {segment}/>
+    <MobileSidebar {segment} />
   {/if}
 </nav>

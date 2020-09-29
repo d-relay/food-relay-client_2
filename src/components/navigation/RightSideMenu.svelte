@@ -1,14 +1,14 @@
 <script lang="ts">
-  import type { User } from "../../interfaces/User";
-  import { format } from "svelte-i18n";
+  import type { User } from '../../interfaces/User'
+  import { format } from 'svelte-i18n'
 
-  export let segment: string;
-  export let user: User;
+  export let segment: string
+  export let user: User
 
-  import Bell from "../../icons/Bell.svelte";
-  import Dropdown from "../../helpers/Dropdown.svelte";
+  import Bell from '../../icons/Bell.svelte'
+  import Dropdown from '../../helpers/Dropdown.svelte'
 
-  let dropdownTrigger: Element;
+  let dropdownTrigger: Element
 </script>
 
 <style lang="scss">

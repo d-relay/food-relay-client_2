@@ -1,12 +1,12 @@
 <script context="module">
-  import { isLoading, waitLocale } from "svelte-i18n";
+  import { isLoading, waitLocale } from 'svelte-i18n'
   export async function preload() {
-    return waitLocale();
+    return waitLocale()
   }
 </script>
 
 <script lang="ts">
-  export let segment: string;
+  export let segment: string
 </script>
 
 {#if $isLoading}

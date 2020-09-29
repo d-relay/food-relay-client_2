@@ -1,212 +1,211 @@
 <script lang="ts">
-  import { onMount, onDestroy, tick } from "svelte";
-  import { createPopper } from "@popperjs/core";
-  const noop = () => {};
-  export let open = false;
-  export let flip = true;
-  export let placement = "bottom-start";
-  export let displayStatic = false;
-  export let keyboard = true;
-  export let insideClick = false;
-  export let closeOnOutsideClick = true;
-  export let offset = [0, 2];
-  export let triggerElement: Element;
-  export let onOpened = noop;
-  export let onClosed = noop;
-  export let labelledby: string = "";
-  let _menuItem: any;
-  let _popperInstance: any;
-  let _dropdownClass: string;
-  let _keyboardEvent: any;
-  let _outsideClickEvent: any;
-  let _triggerEvent: any;
-  let _items: any[] = [];
-  const ESCAPE_KEY = "Escape";
-  const ARROW_UP_KEY = "ArrowUp";
-  const ARROW_DOWN_KEY = "ArrowDown";
+  import { onMount, onDestroy, tick } from 'svelte'
+  import { createPopper } from '@popperjs/core'
+  const noop = () => {}
+  export let open = false
+  export let flip = true
+  export let placement = 'bottom-start'
+  export let displayStatic = false
+  export let keyboard = true
+  export let insideClick = false
+  export let closeOnOutsideClick = true
+  export let offset = [0, 2]
+  export let triggerElement: Element
+  export let onOpened = noop
+  export let onClosed = noop
+  export let labelledby: string = ''
+  let _menuItem: any
+  let _popperInstance: any
+  let _dropdownClass: string
+  let _keyboardEvent: any
+  let _outsideClickEvent: any
+  let _triggerEvent: any
+  let _items: any[] = []
+  const ESCAPE_KEY = 'Escape'
+  const ARROW_UP_KEY = 'ArrowUp'
+  const ARROW_DOWN_KEY = 'ArrowDown'
 
   const REGEXP_KEYDOWN = new RegExp(
     `${ARROW_UP_KEY}|${ARROW_DOWN_KEY}|${ESCAPE_KEY}`
-  );
+  )
 
-  const SELECTOR_VISIBLE_ITEMS =
-    ".dropdown__item:not(.disabled):not(:disabled)";
+  const SELECTOR_VISIBLE_ITEMS = '.dropdown__item:not(.disabled):not(:disabled)'
 
   const placementClassMap = {
-    top: "dropup",
-    bottom: "dropdown",
-    right: "dropright",
-    left: "dropleft",
-  };
+    top: 'dropup',
+    bottom: 'dropdown',
+    right: 'dropright',
+    left: 'dropleft',
+  }
   $: {
     if (open) {
-      onDropdownOpend();
+      onDropdownOpend()
     } else {
-      onDropdownClosed();
+      onDropdownClosed()
     }
   }
   $: {
     // @ts-ignore
-    _dropdownClass = placementClassMap[placement.split("-")[0]];
+    _dropdownClass = placementClassMap[placement.split('-')[0]]
   }
   function attachEvent(target: any, ...args: any) {
-    target.addEventListener(...args);
+    target.addEventListener(...args)
     return {
       remove: () => target.removeEventListener(...args),
-    };
+    }
   }
   function menuClick() {
     if (!insideClick) {
-      open = false;
+      open = false
     }
   }
   async function _createPopperInstance() {
-    await tick();
+    await tick()
     _popperInstance = createPopper(triggerElement, _menuItem, {
       // @ts-ignore
       placement,
       modifiers: [
         {
-          name: "flip",
+          name: 'flip',
           enabled: flip,
         },
         {
-          name: "offset",
+          name: 'offset',
           options: {
             offset,
           },
         },
         {
-          name: "preventOverflow",
+          name: 'preventOverflow',
           options: {
             altBoundary: true,
           },
         },
       ],
-    });
+    })
   }
   function _isVisible(element: HTMLElement) {
     if (!element) {
-      return false;
+      return false
     }
     if (
       element.style &&
       element.parentNode &&
       (element.parentNode as HTMLElement).style
     ) {
-      const elementStyle = getComputedStyle(element);
-      const parentNodeStyle = getComputedStyle(element.parentNode as Element);
+      const elementStyle = getComputedStyle(element)
+      const parentNodeStyle = getComputedStyle(element.parentNode as Element)
       return (
-        elementStyle.display !== "none" &&
-        parentNodeStyle.display !== "none" &&
-        elementStyle.visibility !== "hidden"
-      );
+        elementStyle.display !== 'none' &&
+        parentNodeStyle.display !== 'none' &&
+        elementStyle.visibility !== 'hidden'
+      )
     }
-    return false;
+    return false
   }
   async function getItems() {
-    await tick();
-    const nodeList = _menuItem.querySelectorAll(SELECTOR_VISIBLE_ITEMS);
-    _items = [...nodeList].filter(_isVisible);
+    await tick()
+    const nodeList = _menuItem.querySelectorAll(SELECTOR_VISIBLE_ITEMS)
+    _items = [...nodeList].filter(_isVisible)
   }
   function _keyBoradEvents() {
     if (keyboard) {
       _keyboardEvent = attachEvent(
         document,
-        "keydown",
+        'keydown',
         (event: KeyboardEvent) => {
           if (
             !/input|textarea/i.test((event.target as Element).tagName) &&
             REGEXP_KEYDOWN.test(event.key)
           ) {
-            event.preventDefault();
-            event.stopPropagation();
+            event.preventDefault()
+            event.stopPropagation()
             if (event.key === ESCAPE_KEY) {
-              open = false;
+              open = false
             }
             if (!_items.length) {
-              return;
+              return
             }
-            let index = _items.indexOf(event.target);
+            let index = _items.indexOf(event.target)
             if (event.key === ARROW_UP_KEY && index > 0) {
               // Up
-              index--;
+              index--
             }
             if (event.key === ARROW_DOWN_KEY && index < _items.length - 1) {
               // Down
-              index++;
+              index++
             }
             // index is -1 if the first keydown is an ArrowUp
-            index = index === -1 ? 0 : index;
-            _items[index].focus();
+            index = index === -1 ? 0 : index
+            _items[index].focus()
           }
         }
-      );
+      )
     }
   }
   function _outsideEventAttacher() {
     if (closeOnOutsideClick) {
       _outsideClickEvent = attachEvent(
         document,
-        "click",
+        'click',
         (event: MouseEvent) => {
           const buttonTarget = (event.target as Element).closest(
             '[data-toggle="dropdown"]'
-          );
+          )
           if (
             buttonTarget !== triggerElement &&
             event.target !== _menuItem &&
             !_menuItem.contains(event.target)
           ) {
-            open = false;
+            open = false
           }
         }
-      );
+      )
     }
   }
   async function onDropdownOpend() {
-    getItems();
-    _keyBoradEvents();
-    _outsideEventAttacher();
+    getItems()
+    _keyBoradEvents()
+    _outsideEventAttacher()
     if (!displayStatic) {
-      _createPopperInstance();
+      _createPopperInstance()
     }
-    onOpened();
+    onOpened()
   }
   function _commonExit() {
     if (_keyboardEvent) {
-      _keyboardEvent.remove();
+      _keyboardEvent.remove()
     }
     if (_outsideClickEvent) {
-      _outsideClickEvent.remove();
+      _outsideClickEvent.remove()
     }
-    _destroyPopperInstance();
+    _destroyPopperInstance()
   }
   function onDropdownClosed() {
-    _commonExit();
-    onClosed();
+    _commonExit()
+    onClosed()
   }
   function _destroyPopperInstance() {
     if (_popperInstance) {
-      _popperInstance.destroy();
-      _popperInstance = null;
+      _popperInstance.destroy()
+      _popperInstance = null
     }
   }
   onMount(async () => {
-    await tick();
+    await tick()
     _triggerEvent = attachEvent(
       triggerElement,
-      "click",
+      'click',
       (event: MouseEvent) => {
         // event.stopPropagation();
-        open = !open;
+        open = !open
       }
-    );
-  });
+    )
+  })
   onDestroy(() => {
-    _commonExit();
-    _triggerEvent?.remove();
-  });
+    _commonExit()
+    _triggerEvent?.remove()
+  })
 </script>
 
 <style>
