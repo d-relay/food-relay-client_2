@@ -1,42 +1,42 @@
 <script lang="ts">
-  import type { Alert } from '../../interfaces/Alert'
-  import * as api from '../../api'
-  import Input from '../../helpers/Input.svelte'
-  import Eye from '../../icons/Eye.svelte'
+  import type { Alert } from '../../interfaces/Alert';
+  import * as api from '../../api';
+  import Input from '../../helpers/Input.svelte';
+  import Eye from '../../icons/Eye.svelte';
 
-  export let alert: Alert
-  export let token: string
+  export let alert: Alert;
+  export let token: string;
 
-  import { onMount } from 'svelte'
-  import { _ } from 'svelte-i18n'
+  import { onMount } from 'svelte';
+  import { _ } from 'svelte-i18n';
 
-  import Image from './Image.svelte'
-  import ImageUpload from './ImageUpload.svelte'
+  import Image from './Image.svelte';
+  import ImageUpload from './ImageUpload.svelte';
 
-  let { alert_token, font_size, interval, duration, color, message } = alert
+  let { alert_token, font_size, interval, duration, color, message } = alert;
 
   const gifs = [
     'v1595159188/1_pea_2_peas',
     'v1595159188/1_pea_2_peas',
     'v1595159188/1_pea_2_peas',
-    'v1595159188/1_pea_2_peas',
-  ]
+    'v1595159188/1_pea_2_peas'
+  ];
 
-  let activeImage = 1
+  let activeImage = 1;
   // let showModal = false;
-  let alertTokenUrl: string = ''
-  let showPass = false
+  let alertTokenUrl: string = '';
+  let showPass = false;
 
   async function handleSubmit() {
     await api.alert.updateAlert(
       { font_size, interval, duration, alert_token, color, message },
       token
-    )
+    );
   }
 
   onMount(async () => {
-    alertTokenUrl = window.location.origin + '/alert/' + alert_token
-  })
+    alertTokenUrl = window.location.origin + '/alert/' + alert_token;
+  });
 </script>
 
 <style lang="scss">

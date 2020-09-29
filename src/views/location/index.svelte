@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { format } from 'svelte-i18n'
+  import { format } from 'svelte-i18n';
 
-  import type { Location as ILocatiion } from '../../interfaces/Location'
+  import type { Location as ILocatiion } from '../../interfaces/Location';
 
-  import Input from '../../helpers/Input.svelte'
-  import * as api from '../../api'
+  import Input from '../../helpers/Input.svelte';
+  import * as api from '../../api';
 
-  export let location: ILocatiion
-  export let token: string
+  export let location: ILocatiion;
+  export let token: string;
 
-  let { city, street, house, corps, entrance, floor, flat } = location
+  let { city, street, house, corps, entrance, floor, flat } = location;
 
   async function handleSubmit() {
     await api.location.updateLocation(
       { city, street, house, corps, entrance, floor, flat },
       token
-    )
+    );
   }
 </script>
 

@@ -1,38 +1,38 @@
-import typescript from '@rollup/plugin-typescript'
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import replace from '@rollup/plugin-replace'
-import json from '@rollup/plugin-json'
-import babel from '@rollup/plugin-babel'
-import config from 'sapper/config/rollup'
-import svelte from 'rollup-plugin-svelte'
-import { terser } from 'rollup-plugin-terser'
-import sveltePreprocess from 'svelte-preprocess'
-import dotenv from 'dotenv'
-dotenv.config()
+import typescript from '@rollup/plugin-typescript';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
+import json from '@rollup/plugin-json';
+import babel from '@rollup/plugin-babel';
+import config from 'sapper/config/rollup';
+import svelte from 'rollup-plugin-svelte';
+import { terser } from 'rollup-plugin-terser';
+import sveltePreprocess from 'svelte-preprocess';
+import dotenv from 'dotenv';
+dotenv.config();
 
-import pkg from './package.json'
+import pkg from './package.json';
 
-const { defaults } = require('./svelte.config.js')
+const { defaults } = require('./svelte.config.js');
 
-const preprocess = [sveltePreprocess({ defaults, postcss: true, sass: true })]
+const preprocess = [sveltePreprocess({ defaults, postcss: true, sass: true })];
 
-const mode = process.env.NODE_ENV
-const dev = mode === 'development'
-const sourcemap = dev ? 'inline' : false
-const legacy = !!process.env.SAPPER_LEGACY_BUILD
+const mode = process.env.NODE_ENV;
+const dev = mode === 'development';
+const sourcemap = dev ? 'inline' : false;
+const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const warningIsIgnored = (warning) =>
   warning.message.includes(
     'Use of eval is strongly discouraged, as it poses security risks and may cause issues with minification'
-  ) || warning.message.includes('Circular dependency: node_modules')
+  ) || warning.message.includes('Circular dependency: node_modules');
 
 // Workaround for https://github.com/sveltejs/sapper/issues/1266
 const onwarn = (warning, _onwarn) =>
   (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   warningIsIgnored(warning) ||
-  console.warn(warning.toString())
+  console.warn(warning.toString());
 
 export default {
   client: {
@@ -42,25 +42,25 @@ export default {
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL),
+        'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL)
       }),
       json(),
       svelte({
         dev,
         hydratable: true,
         emitCss: true,
-        preprocess,
+        preprocess
       }),
       resolve({
         browser: true,
-        dedupe: ['svelte'],
+        dedupe: ['svelte']
       }),
       commonjs({
-        sourceMap: !!sourcemap,
+        sourceMap: !!sourcemap
       }),
       typescript({
         noEmitOnError: !dev,
-        sourceMap: !!sourcemap,
+        sourceMap: !!sourcemap
       }),
 
       legacy &&
@@ -72,29 +72,29 @@ export default {
             [
               '@babel/preset-env',
               {
-                targets: '> 0.25%, not dead',
-              },
-            ],
+                targets: '> 0.25%, not dead'
+              }
+            ]
           ],
           plugins: [
             '@babel/plugin-syntax-dynamic-import',
             [
               '@babel/plugin-transform-runtime',
               {
-                useESModules: true,
-              },
-            ],
-          ],
+                useESModules: true
+              }
+            ]
+          ]
         }),
 
       !dev &&
         terser({
-          module: true,
-        }),
+          module: true
+        })
     ],
 
     preserveEntrySignatures: false,
-    onwarn,
+    onwarn
   },
 
   server: {
@@ -104,24 +104,24 @@ export default {
       replace({
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'module.require': 'require',
+        'module.require': 'require'
       }),
       json(),
       svelte({
         generate: 'ssr',
         dev,
-        preprocess,
+        preprocess
       }),
       resolve({
-        dedupe: ['svelte'],
+        dedupe: ['svelte']
       }),
       commonjs({
-        sourceMap: !!sourcemap,
+        sourceMap: !!sourcemap
       }),
       typescript({
         noEmitOnError: !dev,
-        sourceMap: !!sourcemap,
-      }),
+        sourceMap: !!sourcemap
+      })
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||
@@ -129,7 +129,7 @@ export default {
     ),
 
     preserveEntrySignatures: 'strict',
-    onwarn,
+    onwarn
   },
 
   serviceworker: {
@@ -139,19 +139,19 @@ export default {
       resolve(),
       replace({
         'process.browser': true,
-        'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       commonjs({
-        sourceMap: !!sourcemap,
+        sourceMap: !!sourcemap
       }),
       typescript({
         noEmitOnError: !dev,
-        sourceMap: !!sourcemap,
+        sourceMap: !!sourcemap
       }),
-      !dev && terser(),
+      !dev && terser()
     ],
 
     preserveEntrySignatures: false,
-    onwarn,
-  },
-}
+    onwarn
+  }
+};

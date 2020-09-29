@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { format } from 'svelte-i18n'
+  import { format } from 'svelte-i18n';
   function actionType(node: HTMLInputElement) {
-    node.type = type
+    node.type = type;
   }
 
-  export let component: string
-  export let name: string
-  export let type: string
-  export let value: string | number
+  export let component: string;
+  export let name: string;
+  export let type: string;
+  export let value: string | number;
 
-  const i18n: string = component + '.' + name
+  const i18n: string = component + '.' + name;
   const handleInput = (event: any) =>
-    (value = (event.target as HTMLInputElement).value)
+    (value = (event.target as HTMLInputElement).value);
 </script>
 
 <style lang="scss">

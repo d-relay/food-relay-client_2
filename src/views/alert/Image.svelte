@@ -1,20 +1,20 @@
 <script lang="ts">
-  export let id: number
-  export let prefix: string
-  export let activeImage: number
+  export let id: number;
+  export let prefix: string;
+  export let activeImage: number;
 
-  import { _ } from 'svelte-i18n'
-  import { createEventDispatcher } from 'svelte'
+  import { _ } from 'svelte-i18n';
+  import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher()
-  const click = () => dispatch('click')
+  const dispatch = createEventDispatcher();
+  const click = () => dispatch('click');
 
   const handle_keydown = (e: any) => {
     if (e.code === 'Enter' || e.code === 'Space') {
-      click()
-      return
+      click();
+      return;
     }
-  }
+  };
 </script>
 
 <style lang="scss">

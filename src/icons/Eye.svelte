@@ -1,8 +1,8 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
-  const close = () => dispatch('close')
-  export let open: boolean = false
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+  const close = () => dispatch('close');
+  export let open: boolean = false;
 </script>
 
 <style>

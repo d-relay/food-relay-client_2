@@ -1,43 +1,45 @@
 <script context="module" lang="ts">
-  import * as api from '../../api'
+  import * as api from '../../api';
   const getSegmentFromPath = (path: string | undefined): string => {
     if (typeof path === 'string' && path.length > 0) {
-      return path.slice(1)
+      return path.slice(1);
     }
-    return ''
-  }
+    return '';
+  };
 
   export async function preload(this: any, params: any, session: any) {
     if (!session.user) {
-      return this.redirect(302, '/auth/twitch')
+      return this.redirect(302, '/auth/twitch');
     }
-    const { location, alert } = await api.profile.getProfile(session.user.token)
+    const { location, alert } = await api.profile.getProfile(
+      session.user.token
+    );
 
     return {
       user: session.user,
       location,
       alert,
-      segment: getSegmentFromPath(params.path),
-    }
+      segment: getSegmentFromPath(params.path)
+    };
   }
 </script>
 
 <script lang="ts">
-  export let segment: string
+  export let segment: string;
 
-  import type { User as IUser } from '../../interfaces/User'
-  import type { Alert as IAlert } from '../../interfaces/Alert'
-  import type { Location as ILocatiion } from '../../interfaces/Location'
+  import type { User as IUser } from '../../interfaces/User';
+  import type { Alert as IAlert } from '../../interfaces/Alert';
+  import type { Location as ILocatiion } from '../../interfaces/Location';
 
-  export let user: IUser
-  export let alert: IAlert
-  export let location: ILocatiion
+  export let user: IUser;
+  export let alert: IAlert;
+  export let location: ILocatiion;
 
-  import { format } from 'svelte-i18n'
+  import { format } from 'svelte-i18n';
 
-  import Nav from '../../components/navigation/index.svelte'
-  import Alert from '../../views/alert/index.svelte'
-  import Location from '../../views/location/index.svelte'
+  import Nav from '../../components/navigation/index.svelte';
+  import Alert from '../../views/alert/index.svelte';
+  import Location from '../../views/location/index.svelte';
 </script>
 
 <style lang="scss">

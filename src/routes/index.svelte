@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { format } from 'svelte-i18n'
+  import { format } from 'svelte-i18n';
 
-  export let segment: string
+  export let segment: string;
 
-  import Nav from '../components/navigation/index.svelte'
+  import Nav from '../components/navigation/index.svelte';
 </script>
 
 <svelte:head>

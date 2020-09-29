@@ -1,5 +1,5 @@
 <script>
-  export let open: boolean = false
+  export let open: boolean = false;
 </script>
 
 <style>

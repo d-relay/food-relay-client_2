@@ -1,23 +1,23 @@
 module.exports = {
   experimental: {
     applyComplexClasses: true,
-    uniformColorPalette: true,
+    uniformColorPalette: true
   },
   future: {
     removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
+    purgeLayersByDefault: true
   },
   purge: {
     enabled: true,
     layers: ['utilities'],
     content: ['./src/**/*.svelte', './src/**/*.html'],
     options: {
-      keyframes: true,
-    },
+      keyframes: true
+    }
   },
   theme: {
-    extend: {},
+    extend: {}
   },
   variants: {},
-  plugins: [require('@tailwindcss/ui')],
-}
+  plugins: [require('@tailwindcss/ui')]
+};

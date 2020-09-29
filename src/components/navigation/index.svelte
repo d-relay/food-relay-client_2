@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { stores } from '@sapper/app'
-  import Hamburger from '../../icons/Hamburger.svelte'
+  import { stores } from '@sapper/app';
+  import Hamburger from '../../icons/Hamburger.svelte';
 
-  import LeftSideMenu from './LeftSideMenu.svelte'
-  import RightSideMenu from './RightSideMenu.svelte'
-  import MobileSidebar from './MobileSidebar.svelte'
+  import LeftSideMenu from './LeftSideMenu.svelte';
+  import RightSideMenu from './RightSideMenu.svelte';
+  import MobileSidebar from './MobileSidebar.svelte';
 
-  export let segment: string
+  export let segment: string;
 
-  const { session } = stores()
-  let mobileMenuOpen: boolean = false
-  let user = $session.user
+  const { session } = stores();
+  let mobileMenuOpen: boolean = false;
+  let user = $session.user;
   function handle_keydown(e: any) {
     if (e.key === 'Escape') {
-      return (mobileMenuOpen = false)
+      return (mobileMenuOpen = false);
     }
   }
 </script>
