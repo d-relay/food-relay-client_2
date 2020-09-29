@@ -1,8 +1,6 @@
 const cssnano = require('cssnano')({ preset: 'default' })
 const tailwindcss = require('tailwindcss')
-const autoprefixer = require('autoprefixer')({
-  overrideBrowserslist: ['last 2 versions'],
-})
+const autoprefixer = require('autoprefixer')
 
 const purgecss = require('@fullhuman/postcss-purgecss')({
   content: ['./src/**/*.svelte', './src/**/*.html'],
@@ -12,11 +10,5 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 const production = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  plugins: production
-    ? [
-        purgecss,
-        // autoprefixer,
-        cssnano,
-      ]
-    : [tailwindcss],
+  plugins: production ? [purgecss, autoprefixer, cssnano] : [tailwindcss],
 }
