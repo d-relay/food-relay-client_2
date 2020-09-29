@@ -2,29 +2,34 @@
     "compilerOptions": {
         "lib": [
             "DOM",
-            "ES2017",
+            "ESNext",
             "WebWorker"
         ],
+        "module": "ESNext",
         "target": "ES2020",
-        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "Node",
+        "importsNotUsedAsValues": "error",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "importsNotUsedAsValues": "error",
-        "isolatedModules": true,
-        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
         "sourceMap": true,
         "strict": true,
         "types": [
             "svelte",
-            "@sapper"
         ],
         "typeRoots": [
-            "types"
+            "types",
+            "src/node_module/"
         ],
     },
     "include": [
         "src/**/*",
-        "src/node_modules/**/*"
+        "src/node_modules/**/*",
+        "handlers",
+        "middleware",
+        "interfaces"
     ],
     "exclude": [
         "node_modules/*",

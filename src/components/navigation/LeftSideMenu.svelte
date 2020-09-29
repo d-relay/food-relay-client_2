@@ -1,3 +1,7 @@
+<script lang="ts">
+  export let segment: string
+</script>
+
 <style lang="scss">
   .link {
     @apply inline-flex;
@@ -39,7 +43,6 @@
       }
     }
   }
-
 </style>
 
 <div
@@ -56,9 +59,6 @@
       alt="Workflow logo" />
   </div>
   <div class="hidden sm:ml-6 sm:flex">
-    <a href="/" class="link active">Dashboard</a>
-    <a href="/" class="link">Team</a>
-    <a href="/" class="link">Projects</a>
-    <a href="/" class="link">Calendar</a>
+    <a href="/" class="link" class:active={segment === undefined}>Dashboard</a>
   </div>
 </div>
