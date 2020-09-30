@@ -2,6 +2,7 @@
   "name": "relay_food",
   "description": "relay_food",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "watch:tailwind": "postcss static/tailwind.css -o static/index.css -w",
     "build:tailwind": "cross-env NODE_ENV=production postcss static/tailwind.css -o static/index.css",
@@ -56,7 +57,7 @@
     "@types/redis": "^2.8.27",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^9.x",
     "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",
     "eslint": "^7.10.0",
@@ -80,5 +81,8 @@
   "peerDependencies": {
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "postcss": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
