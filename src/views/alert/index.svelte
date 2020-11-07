@@ -28,6 +28,7 @@
   let showPass = false;
 
   async function handleSubmit() {
+    console.log({font_size, interval, duration, alert_token, color, message, token});
     await api.alert.updateAlert(
       { font_size, interval, duration, alert_token, color, message },
       token
@@ -291,6 +292,7 @@
             name="font_size"
             min="14"
             max="40"
+            step="1"
             bind:value={font_size} />
         </div>
         <div class="px-3 mb-3">
@@ -298,6 +300,9 @@
             type="number"
             component="alert"
             name="duration"
+            min="5"
+            max="180"
+            step="5"
             bind:value={duration} />
         </div>
         <div class="px-3 mb-3">
@@ -305,6 +310,9 @@
             type="number"
             component="alert"
             name="interval"
+            min="1"
+            step="1"
+            max="120"
             bind:value={interval} />
         </div>
         <div class="px-3 mb-3">
@@ -335,10 +343,10 @@
                   playsinline
                   class="object-cover h-full w-full">
                   <source
-                    src="https://res.cloudinary.com/duvzrhfdo/video/upload/c_fill,h_250,w_270,q_100/{gifs[activeImage]}.webm"
+                    src="{process.env.CLOUDINARY_VIDEO_URL}/c_fill,h_250,w_270,q_100/{gifs[activeImage]}.webm"
                     type="video/webm" />
                   <source
-                    src="https://res.cloudinary.com/duvzrhfdo/video/upload/c_fill,h_250,w_270,vc_h264/{gifs[activeImage]}.mp4"
+                    src="{process.env.CLOUDINARY_VIDEO_URL}/c_fill,h_250,w_270,vc_h264/{gifs[activeImage]}.mp4"
                     type="video/mp4" />
                 </video>
               </div>

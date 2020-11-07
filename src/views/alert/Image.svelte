@@ -8,7 +8,6 @@
 
   const dispatch = createEventDispatcher();
   const click = () => dispatch('click');
-
   const handle_keydown = (e: any) => {
     if (e.code === 'Enter' || e.code === 'Space') {
       click();
@@ -49,15 +48,15 @@
   tabindex={0}>
   <video autoplay loop muted playsinline class="object-cover h-full w-full">
     <source
-      src="https://res.cloudinary.com/duvzrhfdo/video/upload/c_fill,h_250,w_270,q_100/{prefix}.webm"
+      src="{process.env.CLOUDINARY_VIDEO_URL}/c_fill,h_250,w_270,q_100/{prefix}.webm"
       type="video/webm" />
     <source
-      src="https://res.cloudinary.com/duvzrhfdo/video/upload/c_fill,h_250,w_270,vc_h264/{prefix}.mp4"
+      src="{process.env.CLOUDINARY_VIDEO_URL}/c_fill,h_250,w_270,vc_h264/{prefix}.mp4"
       type="video/mp4" />
   </video>
   <picture class:selected={activeImage === id}>
     <img
-      src="https://res.cloudinary.com/duvzrhfdo/image/upload/c_scale,q_10,w_100/v1594251879/cat.png"
+      src="{process.env.CLOUDINARY_IMAGE_URL}/c_scale,q_10,w_100/v1594251879/cat.png"
       alt="Вибране фото" />
   </picture>
   <div />

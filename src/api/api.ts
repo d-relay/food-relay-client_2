@@ -3,8 +3,7 @@ import fetch from 'node-fetch';
 async function send({ method, path, body, token }: {
     method: string, path: string, body?: any, token?: string
 }) {
-    const url = new URL(process.env.API_BASE_URL!);
-    url.pathname = path;
+    const url = new URL(path, process.env.API_BASE_URL!);
     const response = await fetch(url.href, {
         method,
         body,

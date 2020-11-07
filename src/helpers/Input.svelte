@@ -43,9 +43,13 @@
     @apply font-bold;
     @apply mb-2;
   }
+
+  :global(.rangeSlider) {
+    margin: 1em 0;
+  }
 </style>
 
-<label for="{component}[{name}]">{$format(i18n)}</label>
+<label for="{component}[{name}]">{$format(i18n)} </label>
 <div class="relative rounded-md shadow-sm mt-1">
   <input
     use:actionType
