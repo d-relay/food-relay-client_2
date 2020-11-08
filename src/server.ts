@@ -57,4 +57,4 @@ app.get("/auth/logout", (req, res) => {
 app.use(sapperMiddleware({ session: (req: any) => ({ user: (req.session?.passport?.user) }) }));
 
 const server = http.createServer(app);
-server.listen(3000, () => debug('listen ' + 3000));
+server.listen(process.env.PORT || 3000, () => debug('listen ' + process.env.PORT || '3000'));
