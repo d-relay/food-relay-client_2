@@ -8,5 +8,5 @@ yarn-error.log
 
 /static/index.css
 
-yarn.lock
+# yarn.lock
 .env
