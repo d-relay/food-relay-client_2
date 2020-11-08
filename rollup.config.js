@@ -43,8 +43,12 @@ export default {
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL),
-        'process.env.CLOUDINARY_VIDEO_URL': JSON.stringify(process.env.CLOUDINARY_VIDEO_URL),
-        'process.env.CLOUDINARY_IMAGE_URL': JSON.stringify(process.env.CLOUDINARY_IMAGE_URL)
+        'process.env.CLOUDINARY_VIDEO_URL': JSON.stringify(
+          process.env.CLOUDINARY_VIDEO_URL
+        ),
+        'process.env.CLOUDINARY_IMAGE_URL': JSON.stringify(
+          process.env.CLOUDINARY_IMAGE_URL
+        )
       }),
       json(),
       svelte({
@@ -66,33 +70,33 @@ export default {
       }),
 
       legacy &&
-      babel({
-        extensions: ['.js', '.mjs', '.html', '.svelte'],
-        babelHelpers: 'runtime',
-        exclude: ['node_modules/@babel/**'],
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              targets: '> 0.25%, not dead'
-            }
+        babel({
+          extensions: ['.js', '.mjs', '.html', '.svelte'],
+          babelHelpers: 'runtime',
+          exclude: ['node_modules/@babel/**'],
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: '> 0.25%, not dead'
+              }
+            ]
+          ],
+          plugins: [
+            '@babel/plugin-syntax-dynamic-import',
+            [
+              '@babel/plugin-transform-runtime',
+              {
+                useESModules: true
+              }
+            ]
           ]
-        ],
-        plugins: [
-          '@babel/plugin-syntax-dynamic-import',
-          [
-            '@babel/plugin-transform-runtime',
-            {
-              useESModules: true
-            }
-          ]
-        ]
-      }),
+        }),
 
       !dev &&
-      terser({
-        module: true
-      })
+        terser({
+          module: true
+        })
     ],
 
     preserveEntrySignatures: false,
@@ -127,7 +131,7 @@ export default {
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||
-      Object.keys(process.binding('natives'))
+        Object.keys(process.binding('natives'))
     ),
 
     preserveEntrySignatures: 'strict',

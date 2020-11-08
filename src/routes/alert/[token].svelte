@@ -11,7 +11,6 @@
     }
 
     const alert = transformAlertParams(await getAlertWithoutAuth(token));
-    
     return { token, base_url, alert };
   }
 </script>
