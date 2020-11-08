@@ -26,9 +26,9 @@ const redisClient = createClient({ url: process.env.REDIS_URL! });
 const redisStore = sessionRedis(session);
 
 const app = express();
-if (!dev) {
-	app.use(helmet());
-}
+// if (!dev) {
+// 	// app.use(helmet());
+// }
 
 app.use(session({
 	store: new redisStore({ client: redisClient }),
