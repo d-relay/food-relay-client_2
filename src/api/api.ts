@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 
-async function send({ method, path, body, token }: {
+async function send<T>({ method, path, body, token }: {
     method: string, path: string, body?: any, token?: string
-}) {
+}): Promise<T> {
     const url = new URL(path, process.env.API_BASE_URL!);
     const response = await fetch(url.href, {
         method,
@@ -29,9 +29,9 @@ export function put(path: string, data: any, token?: string) {
     return send({ method: 'put', path, body: JSON.stringify(data), token })
 }
 
-export function get(path: string, data: any, token?: string) {
+export function get<T>(path: string, data: any, token?: string): Promise<T> {
     const params = Object.keys(data).map(key => `${key}=${data[key]}`).join('&')
-    return send({
+    return send<T>({
         method: 'get',
         path: `${path}${params ? '?' + params : ''}`,
         token

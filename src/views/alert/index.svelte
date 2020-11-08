@@ -28,7 +28,15 @@
   let showPass = false;
 
   async function handleSubmit() {
-    console.log({font_size, interval, duration, alert_token, color, message, token});
+    console.log({
+      font_size,
+      interval,
+      duration,
+      alert_token,
+      color,
+      message,
+      token
+    });
     await api.alert.updateAlert(
       { font_size, interval, duration, alert_token, color, message },
       token
@@ -310,9 +318,9 @@
             type="number"
             component="alert"
             name="interval"
-            min="1"
+            min="10"
             step="1"
-            max="120"
+            max="70"
             bind:value={interval} />
         </div>
         <div class="px-3 mb-3">

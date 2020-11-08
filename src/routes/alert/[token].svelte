@@ -1,5 +1,7 @@
 <script context="module">
-  export async function preload(page) {
+  import { getAlertWithoutAuth, transformAlertParams } from '../../api/alert';
+
+  export async function preload(page: any) {
     const { token } = page.params;
     let base_url = process.env.API_BASE_URL!;
     if (base_url.indexOf('https')) {
@@ -7,19 +9,23 @@
     } else {
       base_url = base_url.replace(/https/, 'wss');
     }
-    return { token, base_url };
+
+    const alert = transformAlertParams(await getAlertWithoutAuth(token));
+    
+    return { token, base_url, alert };
   }
 </script>
 
 <script>
+  export let alert: Alert;
   export let token: string;
   export let base_url: string;
-  export let EVENT_INTERVAL: number = 5000;
 
   import { onMount } from 'svelte';
+  import type { Alert } from '../../interfaces/Alert';
 
   const RESTORE_TIMEOUT = 10 * 1000;
-  const EVENT_DELAY = 5 * 1000;
+  // const EVENT_DELAY = 5 * 1000;
 
   let events: string[] = [];
   let show = false;
@@ -27,10 +33,11 @@
 
   function createWebSocket() {
     const ws = new WebSocket(`${base_url}/` + token);
-
+    console.log(alert);
     ws.onmessage = function (event) {
       if (event.data === token) {
         events.push(event.data);
+        console.info('EVENT COME');
       }
     };
 
@@ -46,17 +53,19 @@
   }
 
   function sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((r) => setTimeout(r, ms));
   }
 
   function fireDelayedEvent() {
     setInterval(async () => {
       if (events.length !== 0 && event_fired === false) {
+        console.info('PUSH EVENT');
         event_fired = show = events.pop() === token;
-        await sleep(EVENT_DELAY);
+        await sleep(alert.duration);
         show = false;
-        await sleep(EVENT_INTERVAL);
+        await sleep(alert.interval);
         event_fired = false;
+        console.info('EVENT DONE');
       }
     }, 1000);
   }
