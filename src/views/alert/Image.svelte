@@ -56,7 +56,7 @@
   </video>
   <picture class:selected={activeImage === id}>
     <img
-      src="{process.env.CLOUDINARY_IMAGE_URL}/c_scale,q_10,w_100/v1594251879/cat.png"
+      src="{process.env.CLOUDINARY_IMAGE_URL}/v1604882669/cat.png"
       alt="Вибране фото" />
   </picture>
   <div />

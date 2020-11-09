@@ -49,51 +49,14 @@
   class="flex-1 flex items-center justify-center sm:items-stretch
     sm:justify-start">
   <div class="flex-shrink-0 flex items-center">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100"
-      height="60"
-      class="block lg:hidden select-none">
-      <g>
-        <title>relay-food.fun</title>
-        <text
-          xml:space="preserve"
-          text-anchor="start"
-          font-family="Junction, sans-serif"
-          font-size="30"
-          id="svg_1"
-          y="40.00311"
-          x="6.99219"
-          stroke-width="0"
-          stroke="#000"
-          fill="#000000">
-          r/f.🍐
-        </text>
-      </g>
-    </svg>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="180"
-      height="60"
-      class="hidden lg:block select-none">
-      <g>
-        <title>relay-food.fun</title>
-        <text
-          xmlns="http://www.w3.org/2000/svg"
-          xml:space="preserve"
-          text-anchor="start"
-          font-family="Junction, sans-serif"
-          font-size="30"
-          id="svg_1"
-          y="39.59686"
-          x="0"
-          stroke-width="0"
-          stroke="#000"
-          fill="#000000">
-          relay-food.🍏
-        </text>
-      </g>
-    </svg>
+    <img
+      src="{process.env.CLOUDINARY_IMAGE_URL}/v1604882204/mobile-logo.svg"
+      alt="relay-food.fun"
+      class="block lg:hidden select-none" />
+    <img
+      src="{process.env.CLOUDINARY_IMAGE_URL}/v1604882204/desktop-logo.svg"
+      alt="relay-food.fun"
+      class="hidden lg:block select-none" />
   </div>
   <div class="hidden sm:ml-6 sm:flex">
     <a href="/" class="link" class:active={segment === undefined}>Dashboard</a>
