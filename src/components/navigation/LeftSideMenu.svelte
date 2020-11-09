@@ -49,14 +49,51 @@
   class="flex-1 flex items-center justify-center sm:items-stretch
     sm:justify-start">
   <div class="flex-shrink-0 flex items-center">
-    <img
-      class="block lg:hidden h-8 w-auto"
-      src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
-      alt="Workflow logo" />
-    <img
-      class="hidden lg:block h-8 w-auto"
-      src="https://tailwindui.com/img/logos/workflow-logo-on-white.svg"
-      alt="Workflow logo" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="100"
+      height="60"
+      class="block lg:hidden">
+      <g>
+        <title>relay-food.fun</title>
+        <text
+          xml:space="preserve"
+          text-anchor="start"
+          font-family="Junction, sans-serif"
+          font-size="30"
+          id="svg_1"
+          y="40.00311"
+          x="6.99219"
+          stroke-width="0"
+          stroke="#000"
+          fill="#000000">
+          r/f.🍐
+        </text>
+      </g>
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="220"
+      height="60"
+      class="hidden lg:block">
+      <g>
+        <title>relay-food.fun</title>
+        <text
+          xmlns="http://www.w3.org/2000/svg"
+          xml:space="preserve"
+          text-anchor="start"
+          font-family="Junction, sans-serif"
+          font-size="30"
+          id="svg_1"
+          y="39.59686"
+          x="12.03125"
+          stroke-width="0"
+          stroke="#000"
+          fill="#000000">
+          relay-food.🍏
+        </text>
+      </g>
+    </svg>
   </div>
   <div class="hidden sm:ml-6 sm:flex">
     <a href="/" class="link" class:active={segment === undefined}>Dashboard</a>

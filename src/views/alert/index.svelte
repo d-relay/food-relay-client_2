@@ -26,7 +26,7 @@
   // let showModal = false;
   let alertTokenUrl: string = '';
   let showPass = false;
-
+  let inputTokenElement: HTMLInputElement;
   async function handleSubmit() {
     console.log({
       font_size,
@@ -46,6 +46,23 @@
   onMount(async () => {
     alertTokenUrl = window.location.origin + '/alert/' + alert_token;
   });
+
+  async function coppy(): Promise<void> {
+    // const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
+    const permissionStatus = await navigator.permissions.query({
+      // @ts-ignore
+      name: 'clipboard-write',
+      allowWithoutGesture: false
+    });
+
+    if (permissionStatus.state !== 'denied') {
+      navigator.clipboard.writeText(alertTokenUrl);
+    } else {
+      inputTokenElement.focus();
+      inputTokenElement.select();
+      document.execCommand('copy');
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -259,6 +276,7 @@
           class="w-full relative z-0 flex flex-col sm:inline-flex sm:flex-row shadow-sm rounded-md">
           <div class="relative w-full">
             <input
+              bind:this={inputTokenElement}
               type={showPass ? 'text' : 'password'}
               id="alert__token"
               value={alertTokenUrl}
@@ -268,10 +286,7 @@
             </div>
           </div>
           <div class="flex flex-row">
-            <button
-              type="button"
-              on:click={() => navigator.clipboard.writeText(alertTokenUrl)}
-              class="alert__token-copy">
+            <button type="button" on:click={coppy} class="alert__token-copy">
               {$_('alert.copy')}
             </button>
             <button

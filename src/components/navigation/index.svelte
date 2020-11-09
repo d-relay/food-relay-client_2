@@ -26,11 +26,11 @@
     @apply z-10;
   }
 
-  .nav-wrapper {
-    @apply max-w-7xl;
-    @apply mx-auto;
-    @apply px-2;
-  }
+  // .nav-wrapper {
+  //   @apply max-w-7xl;
+  //   @apply mx-auto;
+  //   @apply px-2;
+  // }
 
   .menu {
     @apply relative;
@@ -71,22 +71,22 @@
     .hamburger_menu {
       display: none;
     }
-    .nav-wrapper {
-      @apply px-6;
-    }
+    // .nav-wrapper {
+    //   @apply px-6;
+    // }
   }
 
-  @media (min-width: 1024px) {
-    .nav-wrapper {
-      @apply px-8;
-    }
-  }
+  // @media (min-width: 1024px) {
+  //   .nav-wrapper {
+  //     @apply px-8;
+  //   }
+  // }
 </style>
 
 <svelte:window on:keydown={handle_keydown} on:click={handle_keydown} />
 
 <nav class="nav">
-  <div class="nav-wrapper">
+  <div class="lg:relative container mx-auto">
     <div class="menu">
       <div class="hamburger_menu">
         <button
