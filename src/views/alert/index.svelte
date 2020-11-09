@@ -42,25 +42,25 @@
       token
     );
   }
+  let permissionStatus: PermissionStatus;
 
   onMount(async () => {
     alertTokenUrl = window.location.origin + '/alert/' + alert_token;
+    permissionStatus = await navigator.permissions.query({
+      // @ts-ignore
+      name: 'clipboard-write'
+    });
   });
 
   async function coppy(): Promise<void> {
-    // const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
-    const permissionStatus = await navigator.permissions.query({
-      // @ts-ignore
-      name: 'clipboard-write',
-      allowWithoutGesture: false
-    });
-
     if (permissionStatus.state !== 'denied') {
       navigator.clipboard.writeText(alertTokenUrl);
     } else {
       inputTokenElement.focus();
+      inputTokenElement.type = 'text';
       inputTokenElement.select();
       document.execCommand('copy');
+      inputTokenElement.type = 'password';
     }
   }
 </script>

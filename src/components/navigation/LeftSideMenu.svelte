@@ -53,7 +53,7 @@
       xmlns="http://www.w3.org/2000/svg"
       width="100"
       height="60"
-      class="block lg:hidden">
+      class="block lg:hidden select-none">
       <g>
         <title>relay-food.fun</title>
         <text
@@ -73,9 +73,9 @@
     </svg>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="220"
+      width="180"
       height="60"
-      class="hidden lg:block">
+      class="hidden lg:block select-none">
       <g>
         <title>relay-food.fun</title>
         <text
@@ -86,7 +86,7 @@
           font-size="30"
           id="svg_1"
           y="39.59686"
-          x="12.03125"
+          x="0"
           stroke-width="0"
           stroke="#000"
           fill="#000000">
