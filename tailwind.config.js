@@ -8,7 +8,7 @@ module.exports = {
     purgeLayersByDefault: true
   },
   purge: {
-    enabled: false,
+    enabled: true,
     layers: ['utilities'],
     content: ['./src/**/*.svelte', './src/**/*.html'],
     options: {

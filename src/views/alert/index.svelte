@@ -52,7 +52,7 @@
     });
   });
 
-  async function coppy(): Promise<void> {
+  async function copy(): Promise<void> {
     if (permissionStatus.state !== 'denied') {
       navigator.clipboard.writeText(alertTokenUrl);
     } else {
@@ -286,7 +286,7 @@
             </div>
           </div>
           <div class="flex flex-row">
-            <button type="button" on:click={coppy} class="alert__token-copy">
+            <button type="button" on:click={copy} class="alert__token-copy">
               {$_('alert.copy')}
             </button>
             <button
