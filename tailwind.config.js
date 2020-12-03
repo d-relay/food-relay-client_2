@@ -1,14 +1,13 @@
 module.exports = {
-  experimental: {
-    applyComplexClasses: true,
-    uniformColorPalette: true
-  },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
-  },
+  // experimental: {
+  //   applyComplexClasses: true,
+  //   uniformColorPalette: true
+  // },
+  // future: {
+  //   removeDeprecatedGapUtilities: true,
+  //   purgeLayersByDefault: true
+  // },
   purge: {
-    enabled: true,
     layers: ['utilities'],
     content: ['./src/**/*.svelte', './src/**/*.html'],
     options: {

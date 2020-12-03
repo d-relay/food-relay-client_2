@@ -8,7 +8,7 @@ import express from "express";
 import session from "express-session";
 import { middleware as sapperMiddleware } from "@sapper/server";
 
-import helmet from "helmet";
+// import helmet from "helmet";
 import passport from "passport";
 import compression from "compression";
 import bodyParser from "body-parser";
@@ -46,7 +46,7 @@ app.use(passport.session());
 app.use(compression({ threshold: 0 }));
 app.use(sirv("static", { dev }));
 
-app.get("/auth/login", (req, res) => (req.session?.passport?.user) ? res.redirect("/profile") : res.redirect("/auth/twitch"));
+app.get("/auth/login", (req: any, res) => (req.session?.passport?.user) ? res.redirect("/profile") : res.redirect("/auth/twitch"));
 app.get("/auth/twitch", passport.authenticate("twitch"));
 app.get("/auth/twitch/callback", passport.authenticate("twitch", { successRedirect: "/profile", failureRedirect: "/" }));
 
@@ -54,6 +54,7 @@ app.get("/auth/logout", (req, res) => {
 	req.logout();
 	req.session?.destroy((err) => res.redirect("/"));
 });
+
 app.use(sapperMiddleware({ session: (req: any) => ({ user: (req.session?.passport?.user) }) }));
 
 const server = http.createServer(app);

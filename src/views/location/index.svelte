@@ -4,6 +4,7 @@
   import type { Location as ILocatiion } from '../../interfaces/Location';
 
   import Input from '../../helpers/Input.svelte';
+  import ConfirmButton from '../../helpers/ConfirmButton.svelte';
   import * as api from '../../api';
 
   export let location: ILocatiion;
@@ -87,9 +88,7 @@
     </div>
     <div class="flex flex-wrap -mx-3 my-6">
       <div class="w-full md:w-1/3 px-3 m-auto text-center">
-        <button class="confirm-button" type="submit">
-          {$format('location.verify')}
-        </button>
+        <ConfirmButton t={$format('location.verify')} />
       </div>
     </div>
   </form>

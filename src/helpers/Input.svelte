@@ -24,6 +24,7 @@
     @apply transition;
     @apply duration-150;
     @apply ease-in-out;
+    @apply border;
     &:focus {
       @apply outline-none;
       @apply border-indigo-300;
@@ -50,7 +51,7 @@
 </style>
 
 <label for="{component}[{name}]">{$format(i18n)} </label>
-<div class="relative rounded-md shadow-sm mt-1">
+<div class="relative rounded-md shadow mt-1">
   <input
     use:actionType
     on:input={handleInput}

@@ -3,6 +3,7 @@
   import * as api from '../../api';
   import Input from '../../helpers/Input.svelte';
   import Eye from '../../icons/Eye.svelte';
+  import ConfirmButton from '../../helpers/ConfirmButton.svelte';
 
   export let alert: Alert;
   export let token: string;
@@ -273,7 +274,7 @@
           {$_('alert.token')}
         </label>
         <div
-          class="w-full relative z-0 flex flex-col sm:inline-flex sm:flex-row shadow-sm rounded-md">
+          class="w-full relative z-0 flex flex-col sm:inline-flex sm:flex-row shadow-md rounded-md">
           <div class="relative w-full">
             <input
               bind:this={inputTokenElement}
@@ -385,9 +386,7 @@
     </div>
     <div class="flex flex-wrap my-6 -mx-3">
       <div class="w-full md:w-1/3 px-3 m-auto text-center">
-        <button class="confirm-button" type="submit">
-          {$_('alert.save')}
-        </button>
+        <ConfirmButton t={$_('alert.save')} />
       </div>
     </div>
   </form>
