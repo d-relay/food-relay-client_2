@@ -11,7 +11,7 @@ export default function jwtExpiration() {
                 const exp: string = (<any>decoded).exp || '0';
                 if (Date.now() >= parseInt(exp) * 1000) {
                     return req.session?.destroy(() => {
-                        if (req.session['passport']) {
+                        if (req.session && req.session['passport']) {
                             delete req.session['passport'];
                         }
                         return res.redirect('/auth/twitch');
