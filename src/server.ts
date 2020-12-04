@@ -19,8 +19,7 @@ import jwtExpiration from './middleware/jwt-expiration';
 import { i18nMiddleware } from './middleware/i18n';
 import './handlers/passport';
 
-const { NODE_ENV } = process.env;
-const dev = NODE_ENV === "development";
+const dev = process.env.NODE_ENV === "development";
 
 const redisClient = createClient({ url: process.env.REDIS_URL! });
 const redisStore = sessionRedis(session);

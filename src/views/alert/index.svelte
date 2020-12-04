@@ -280,6 +280,7 @@
               bind:this={inputTokenElement}
               type={showPass ? 'text' : 'password'}
               id="alert__token"
+              disabled
               value={alertTokenUrl}
               class="alert__token-securecode" />
             <div class="alert__token-icon">
