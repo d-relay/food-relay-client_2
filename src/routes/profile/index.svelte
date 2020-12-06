@@ -40,6 +40,7 @@
   import Nav from '../../components/navigation/index.svelte';
   import Alert from '../../views/alert/index.svelte';
   import Location from '../../views/location/index.svelte';
+  import Partner from '../../views/partner/index.svelte';
 </script>
 
 <svelte:head>
@@ -57,4 +58,5 @@
 
   <Location {location} token={user.token} />
   <Alert {alert} token={user.token} />
+  <Partner token={user.token} />
 </main>

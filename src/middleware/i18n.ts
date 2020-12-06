@@ -10,7 +10,7 @@ import {
 import { setCookie, getCookie } from '../handlers/cookie.js';
 
 const INIT_OPTIONS = {
-    fallbackLocale: 'uk',
+    fallbackLocale: 'en',
     initialLocale: null,
     loadingDelay: 200,
     formats: {},

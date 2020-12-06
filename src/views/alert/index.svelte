@@ -13,6 +13,7 @@
 
   import Image from './Image.svelte';
   import ImageUpload from './ImageUpload.svelte';
+  import SectionContainer from '../../helpers/SectionContainer.svelte';
 
   let { alert_token, font_size, interval, duration, color, message } = alert;
 
@@ -24,26 +25,15 @@
   ];
 
   let activeImage = 1;
-  // let showModal = false;
-  let alertTokenUrl: string = '';
   let showPass = false;
+  let alertTokenUrl = '';
   let inputTokenElement: HTMLInputElement;
-  async function handleSubmit() {
-    console.log({
-      font_size,
-      interval,
-      duration,
-      alert_token,
-      color,
-      message,
-      token
-    });
-    await api.alert.updateAlert(
-      { font_size, interval, duration, alert_token, color, message },
-      token
-    );
-  }
   let permissionStatus: PermissionStatus;
+
+  async function handleSubmit(): Promise<any> {
+    const data = { font_size, interval, duration, alert_token, color, message };
+    return api.alert.updateAlert(data, token);
+  }
 
   onMount(async () => {
     alertTokenUrl = window.location.origin + '/alert/' + alert_token;
@@ -244,12 +234,7 @@
   }
 </style>
 
-<section class="rounded overflow-hidden shadow-lg border relative my-6">
-  <div class="bg-gray-50 p-6 border-b">
-    <h2 class="text-lg leading-6 font-medium text-gray-900">
-      {$_('alert.title')}
-    </h2>
-  </div>
+<SectionContainer title={$_('alert.title')}>
   <form on:submit|preventDefault={handleSubmit} class="px-6">
     <div class="flex flex-wrap my-6 -mx-3">
       <h2
@@ -391,4 +376,4 @@
       </div>
     </div>
   </form>
-</section>
+</SectionContainer>

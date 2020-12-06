@@ -54,6 +54,11 @@ app.get("/auth/logout", (req, res) => {
 	req.session?.destroy((err) => res.redirect("/"));
 });
 
+app.post('/lang', (req, res) => {
+	res.cookie("locale", req.body.lang || 'en');
+	return res.send('true')
+})
+
 app.use(sapperMiddleware({ session: (req: any) => ({ user: (req.session?.passport?.user) }) }));
 
 const server = http.createServer(app);

@@ -5,6 +5,7 @@
 
   import Input from '../../helpers/Input.svelte';
   import ConfirmButton from '../../helpers/ConfirmButton.svelte';
+  import SectionContainer from '../../helpers/SectionContainer.svelte';
   import * as api from '../../api';
 
   export let location: ILocatiion;
@@ -20,14 +21,19 @@
   }
 </script>
 
-<section class="rounded overflow-hidden shadow-lg border relative my-6">
-  <div class="bg-gray-50 p-6 border-b">
-    <h2 class="text-lg leading-6 font-medium text-gray-900">
-      {$format('location.title')}
-    </h2>
-  </div>
+<SectionContainer title={$format('location.title')}>
   <form on:submit|preventDefault={handleSubmit} class="px-6">
     <div class="flex flex-wrap -mx-3 my-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <Input
+          type="text"
+          component="location"
+          name="region"
+          autocomplete="shipping "
+          placeholder="Область"
+          required="true"
+          bind:value={city} />
+      </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <Input
           type="text"
@@ -38,7 +44,9 @@
           required="true"
           bind:value={city} />
       </div>
-      <div class="w-full md:w-1/2 px-3">
+    </div>
+    <div class="flex flex-wrap -mx-3 my-6">
+      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <Input
           type="text"
           component="location"
@@ -48,9 +56,7 @@
           required="true"
           bind:value={street} />
       </div>
-    </div>
-    <div class="flex flex-wrap -mx-3 my-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <Input
           type="text"
           component="location"
@@ -59,7 +65,7 @@
           required="true"
           bind:value={house} />
       </div>
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <Input
           type="text"
           component="location"
@@ -92,4 +98,4 @@
       </div>
     </div>
   </form>
-</section>
+</SectionContainer>
