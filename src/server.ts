@@ -49,7 +49,13 @@ app.get("/google8b3f0c63605c66b2.html", (req: any, res) => {
 	res.send('google-site-verification: google8b3f0c63605c66b2.html');
 });
 
-app.get("/auth/login", (req: any, res) => (req.session?.passport?.user) ? res.redirect("/profile") : res.redirect("/auth/twitch"));
+app.get("/auth/google", passport.authenticate("google"));
+app.get("/auth/google/callback", passport.authenticate("google", { successRedirect: "/profile", failureRedirect: "/" }));
+
+app.get("/auth/login", (req: any, res) => {
+	return (req.session?.passport?.user) ? res.redirect("/profile") : res.redirect("/auth/twitch")
+})
+
 app.get("/auth/twitch", passport.authenticate("twitch"));
 app.get("/auth/twitch/callback", passport.authenticate("twitch", { successRedirect: "/profile", failureRedirect: "/" }));
 

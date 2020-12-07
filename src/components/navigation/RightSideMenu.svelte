@@ -117,7 +117,7 @@
           aria-expanded="false">
           <img
             class="h-8 w-8 rounded-full"
-            src={user.profile_image_url}
+            src={user.picture}
             alt="" />
         </button>
 
