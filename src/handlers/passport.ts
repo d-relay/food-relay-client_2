@@ -3,8 +3,6 @@ import passport from 'passport';
 import { Strategy as TwitchStrategy } from 'passport-twitch-strategy';
 import url from 'url';
 
-import { rollbar } from './rollbar';
-
 const options = {
     clientID: process.env.TWITCH_CLIENT_ID!,
     clientSecret: process.env.TWITCH_CLIENT_SECRET!,
@@ -15,7 +13,6 @@ const options = {
 
 const callback = async (accessToken: string, refreshToken: string, profile: any, done: Function) => {
     try {
-        rollbar.info("profile_log: ", profile);
         profile.accessToken = accessToken;
         profile.refreshToken = refreshToken;
         const loginURL = url.resolve(process.env.API_BASE_URL!, 'login');
@@ -32,9 +29,7 @@ const callback = async (accessToken: string, refreshToken: string, profile: any,
             const json = await resp.json();
             return done(json, false);
         }
-
     } catch (err) {
-        rollbar.error(err);
         return done(err, false);
     }
 }

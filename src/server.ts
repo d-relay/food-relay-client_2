@@ -45,6 +45,10 @@ app.use(passport.session());
 app.use(compression({ threshold: 0 }));
 app.use(sirv("static", { dev }));
 
+app.get("/google8b3f0c63605c66b2.html", (req: any, res) => {
+	res.send('google-site-verification: google8b3f0c63605c66b2.html');
+});
+
 app.get("/auth/login", (req: any, res) => (req.session?.passport?.user) ? res.redirect("/profile") : res.redirect("/auth/twitch"));
 app.get("/auth/twitch", passport.authenticate("twitch"));
 app.get("/auth/twitch/callback", passport.authenticate("twitch", { successRedirect: "/profile", failureRedirect: "/" }));
