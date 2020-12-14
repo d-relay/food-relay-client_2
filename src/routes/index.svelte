@@ -10,10 +10,24 @@
   <title>Relay Food</title>
 </svelte:head>
 
+<style>
+  .background--container {
+    min-height: calc(100vh - 65px);
+    @apply flex;
+    @apply flex-col;
+    @apply justify-center;
+    @apply bg-gray-50;
+    @apply p-3;
+    background-image: url("https://res.cloudinary.com/duvzrhfdo/image/upload/v1607816095/login-container-background.svg");
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
 <Nav {segment} />
-<main class="lg:relative container mx-auto">
-  <h1 class="font-display text-4xl md:text-6xl text-center">
+<main class="background--container">
+  <h1 class="font-display text-4xl md:text-6xl text-center mb-5">
     {$format('main.title')}
   </h1>
-  <h2 class="font-display text-3xl text-center">{$format('main.sub_title')}</h2>
+  <h2 class="font-display text-3xl text-center mt-5">{$format('main.sub_title')}</h2>
 </main>

@@ -6,18 +6,18 @@ import sirv from "sirv";
 import debug from 'debug';
 import express from "express";
 import session from "express-session";
-import { middleware as sapperMiddleware } from "@sapper/server";
+
 
 // import helmet from "helmet";
 import passport from "passport";
 import compression from "compression";
-import bodyParser from "body-parser";
 import { createClient } from "redis";
 import sessionRedis from "connect-redis";
 
 import jwtExpiration from './middleware/jwt-expiration';
 import { i18nMiddleware } from './middleware/i18n';
 import './handlers/passport';
+import { conroller } from './server/routes';
 
 const dev = process.env.NODE_ENV === "development";
 
@@ -37,39 +37,14 @@ app.use(session({
 	saveUninitialized: true,
 }));
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(i18nMiddleware());
 app.use(jwtExpiration());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(compression({ threshold: 0 }));
 app.use(sirv("static", { dev }));
-
-app.get("/google8b3f0c63605c66b2.html", (req: any, res) => {
-	res.send('google-site-verification: google8b3f0c63605c66b2.html');
-});
-
-app.get("/auth/google", passport.authenticate("google"));
-app.get("/auth/google/callback", passport.authenticate("google", { successRedirect: "/profile", failureRedirect: "/" }));
-
-app.get("/auth/login", (req: any, res) => {
-	return (req.session?.passport?.user) ? res.redirect("/profile") : res.redirect("/auth/twitch")
-})
-
-app.get("/auth/twitch", passport.authenticate("twitch"));
-app.get("/auth/twitch/callback", passport.authenticate("twitch", { successRedirect: "/profile", failureRedirect: "/" }));
-
-app.get("/auth/logout", (req, res) => {
-	req.logout();
-	req.session?.destroy((err) => res.redirect("/"));
-});
-
-app.post('/lang', (req, res) => {
-	res.cookie("locale", req.body.lang || 'en');
-	return res.send('true')
-})
-
-app.use(sapperMiddleware({ session: (req: any) => ({ user: (req.session?.passport?.user) }) }));
+conroller(app)
 
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000, () => debug('listen ' + process.env.PORT || '3000'));
