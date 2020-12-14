@@ -44,7 +44,8 @@ export default {
         'process.env.NODE_ENV': JSON.stringify(mode),
         'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL),
         'process.env.CLOUDINARY_VIDEO_URL': JSON.stringify(process.env.CLOUDINARY_VIDEO_URL),
-        'process.env.CLOUDINARY_IMAGE_URL': JSON.stringify(process.env.CLOUDINARY_IMAGE_URL)
+        'process.env.CLOUDINARY_IMAGE_URL': JSON.stringify(process.env.CLOUDINARY_IMAGE_URL),
+        'CLOUDINARY_IMAGE_URL': process.env.CLOUDINARY_IMAGE_URL
       }),
       json(),
       svelte({

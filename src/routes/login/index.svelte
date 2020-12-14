@@ -32,6 +32,15 @@
     @apply border;
     @apply p-3;
     @apply sm:rounded-lg;
+
+    @apply focus:outline-none;
+  }
+
+  .auth--button:focus,
+  .auth--button:hover,
+  .auth--button:focus-within {
+    @apply border-teal-500;
+    @apply shadow-outline-teal;
   }
 
   .auth-lock-social-button-icon {
@@ -39,6 +48,10 @@
     left: 20px;
     top: calc(50% - 10px);
   }
+  /* .auth-lock-social-button-icon:hover {
+    @apply border;
+
+  } */
 
   .auth-lock-social-button-icon > img {
     width: 20px;
@@ -65,8 +78,8 @@
           <div class="auth-lock-social-button-icon">
             <img
               width="25"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-              alt="Google Logo" />
+              src="https://static.twitchcdn.net/assets/favicon-32-d6025c14e900565d6177.png"
+              alt="Twitch Logo" />
           </div>
           Login with Twitch
         </a>
