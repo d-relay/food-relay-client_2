@@ -19,7 +19,7 @@
     @apply justify-center;
     @apply bg-gray-50;
     @apply p-3;
-    background-image: url('https://res.cloudinary.com/duvzrhfdo/image/upload/v1607816095/login-container-background.svg');
+    background-image: url('CLOUDINARY_IMAGE_URL/login-container-background.svg');
     background-position: center;
     background-size: cover;
   }
