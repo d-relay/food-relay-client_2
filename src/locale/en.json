@@ -7,7 +7,7 @@
     },
     "main": {
         "title": "Donate food!",
-         "sub_title": "Relay Food is an interactive donation from the viewer right into your stream!"
+        "sub_title": "Relay Food is an interactive donation from the viewer right into your stream!"
     },
     "profile": {
         "hello": "Hello"
@@ -15,33 +15,35 @@
     "location": {
         "title": "Address for delivery service 🚚",
         "region": "Region",
-        "city": "city",
-        "street": "street",
-        "house": "house",
-        "corps": "corps",
-        "entrance": "entrance",
-        "floor": "floor",
-        "flat": "flat",
+        "city": "City",
+        "street": "Street",
+        "house": "House",
+        "corps": "Corps",
+        "entrance": "Entrance",
+        "floor": "Floor",
+        "flat": "Flat",
         "verify": "Verify"
     },
     "alert": {
         "title": "Donation notification 🚨️",
         "image_subtitle": "Виберіть один із запропонованих баннерів або використай власний",
-        "upload": "Завантажити файл",
-        "upload_format": "PNG, JPG, GIF до 10MB",
-        "font_size": "Розмір шрифту",
-        "message": "Текст сповіщення",
-        "color": "Колір",
-        "duration": "ТРИВАЛІСТЬ, ВІД 5 ДО 180 СЕКУНД *",
-        "interval": "Виводити сповіщення кожні 10 - 70 хвилин",
-        "copy": "Копіювати",
-        "test": "тестувати",
-        "token": "Ключ токен",
-        "save": "Зберегти",
-        "demo": "Демонстація"
+        "upload": "Upload the file",
+        "upload_format": "PNG, JPG, GIF up to 10MB",
+        "font_size": "Font size",
+        "message": "Notification text",
+        "color": "Color",
+        "duration": "DURATION, FROM 5 TO 180 SECONDS *",
+        "interval": "Display notifications every 10 - 70 minutes",
+        "copy": "Copy",
+        "test": "Test",
+        "token": "Token",
+        "save": "Save",
+        "demo": "Demo"
     },
     "partner": {
-        "title": "Наші Партнери 🍕"
+        "title": "Our partners 🍕",
+        "subtitle": "Select partners from the list available for your address",
+        "select": "Select"
     },
     "language": {
         "en": "English",

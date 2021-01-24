@@ -17,12 +17,7 @@
 
   let { alert_token, font_size, interval, duration, color, message } = alert;
 
-  const gifs = [
-    'v1595159188/1_pea_2_peas',
-    'v1595159188/1_pea_2_peas',
-    'v1595159188/1_pea_2_peas',
-    'v1595159188/1_pea_2_peas'
-  ];
+  const gifs = ['1_pea_2_peas', '1_pea_2_peas', '1_pea_2_peas', '1_pea_2_peas'];
 
   let activeImage = 1;
   let showPass = false;

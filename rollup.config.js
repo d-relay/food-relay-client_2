@@ -13,7 +13,7 @@ dotenv.config();
 
 import pkg from './package.json';
 
-const { defaults } = require('./svelte.config.js');
+import { defaults } from './svelte.config.js';
 
 const preprocess = [sveltePreprocess({ defaults, postcss: true, sass: true })];
 

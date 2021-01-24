@@ -48,10 +48,6 @@
     left: 20px;
     top: calc(50% - 10px);
   }
-  /* .auth-lock-social-button-icon:hover {
-    @apply border;
-
-  } */
 
   .auth-lock-social-button-icon > img {
     width: 20px;

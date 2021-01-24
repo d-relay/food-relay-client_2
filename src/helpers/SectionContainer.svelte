@@ -2,9 +2,33 @@
   export let title: string;
 </script>
 
-<section class="rounded overflow-hidden shadow-lg border relative my-6">
-  <div class="bg-gray-50 p-6 border-b">
-    <h2 class="text-lg leading-6 font-medium text-gray-900">{title}</h2>
+<style>
+  .section-wrapper {
+    @apply rounded;
+    @apply overflow-hidden;
+    @apply shadow-lg;
+    @apply border;
+    @apply relative;
+    @apply my-6;
+  }
+
+  .section-header {
+    @apply p-6;
+    @apply border-b;
+    @apply bg-gray-50;
+  }
+
+  .section-header__title {
+    @apply text-lg;
+    @apply leading-6;
+    @apply font-medium;
+    @apply text-gray-900;
+  }
+</style>
+
+<section class="section-wrapper">
+  <div class="section-header">
+    <h2 class="section-header__title">{title}</h2>
   </div>
   <slot />
 </section>
