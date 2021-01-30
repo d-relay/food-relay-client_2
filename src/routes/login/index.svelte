@@ -11,6 +11,50 @@
   import Nav from '../../components/navigation/index.svelte';
 </script>
 
+<svelte:head>
+  <title>Sign In</title>
+</svelte:head>
+
+<Nav />
+<main class="background--container">
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
+          Sign in to your account
+        </h2>
+      </div>
+      <div class="mt-6">
+        <a href="/auth/twitch" class="auth--button">
+          <span class="sr-only">Sign in with Twitch</span>
+          <div class="auth-lock-social-button-icon">
+            <img
+              width="25"
+              src="https://static.twitchcdn.net/assets/favicon-32-d6025c14e900565d6177.png"
+              alt="Twitch Logo"
+            />
+          </div>
+          Login with Twitch
+        </a>
+      </div>
+
+      <div class="mt-6">
+        <a href="/auth/google" class="auth--button">
+          <span class="sr-only">Sign in with Google</span>
+          <div class="auth-lock-social-button-icon">
+            <img
+              width="25"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+              alt="Google Logo"
+            />
+          </div>
+          Login with Google
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
 <style>
   .background--container {
     min-height: calc(100vh - 65px);
@@ -54,45 +98,3 @@
     height: 20px;
   }
 </style>
-
-<svelte:head>
-  <title>Sign In</title>
-</svelte:head>
-
-<Nav />
-<main class="background--container">
-  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
-        </h2>
-      </div>
-      <div class="mt-6">
-        <a href="/auth/twitch" class="auth--button">
-          <span class="sr-only">Sign in with Twitch</span>
-          <div class="auth-lock-social-button-icon">
-            <img
-              width="25"
-              src="https://static.twitchcdn.net/assets/favicon-32-d6025c14e900565d6177.png"
-              alt="Twitch Logo" />
-          </div>
-          Login with Twitch
-        </a>
-      </div>
-
-      <div class="mt-6">
-        <a href="/auth/google" class="auth--button">
-          <span class="sr-only">Sign in with Google</span>
-          <div class="auth-lock-social-button-icon">
-            <img
-              width="25"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-              alt="Google Logo" />
-          </div>
-          Login with Google
-        </a>
-      </div>
-    </div>
-  </div>
-</main>

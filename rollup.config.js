@@ -3,7 +3,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
-import babel from '@rollup/plugin-babel';
 import config from 'sapper/config/rollup';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
@@ -20,7 +19,6 @@ const preprocess = [sveltePreprocess({ defaults, postcss: true, sass: true })];
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const sourcemap = dev ? 'inline' : false;
-const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const warningIsIgnored = (warning) =>
   warning.message.includes(
@@ -67,31 +65,6 @@ export default {
         noEmitOnError: !dev,
         sourceMap: !!sourcemap
       }),
-
-      legacy &&
-      babel({
-        extensions: ['.js', '.mjs', '.html', '.svelte'],
-        babelHelpers: 'runtime',
-        exclude: ['node_modules/@babel/**'],
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              targets: '> 0.25%, not dead'
-            }
-          ]
-        ],
-        plugins: [
-          '@babel/plugin-syntax-dynamic-import',
-          [
-            '@babel/plugin-transform-runtime',
-            {
-              useESModules: true
-            }
-          ]
-        ]
-      }),
-
       !dev &&
       terser({
         module: true

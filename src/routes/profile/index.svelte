@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import * as api from '../../api';
+  import { profile } from '../../api';
   const getSegmentFromPath = (path: string | undefined): string => {
     if (typeof path === 'string' && path.length > 0) {
       return path.slice(1);
@@ -11,9 +11,7 @@
     if (!session.user) {
       return this.redirect(302, '/auth/twitch');
     }
-    const { location, alert } = await api.profile.getProfile(
-      session.user.token
-    );
+    const { location, alert } = await profile.getProfile(session.user.token);
 
     return {
       user: session.user,
@@ -44,7 +42,7 @@
 </script>
 
 <svelte:head>
-  <title>Profile {user.display_name}</title>
+  <title>Налаштування профілю {user.display_name}</title>
 </svelte:head>
 
 <Nav {segment} />

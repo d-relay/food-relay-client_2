@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
   import { getAlertWithoutAuth, transformAlertParams } from '../../api/alert';
 
   export async function preload(page: any) {
@@ -15,7 +15,7 @@
   }
 </script>
 
-<script>
+<script lang="ts">
   export let alert: Alert;
   export let token: string;
   export let base_url: string;
@@ -81,12 +81,6 @@
   });
 </script>
 
-<style>
-  :global(body, .content, #sapper) {
-    background-color: transparent;
-  }
-</style>
-
 <svelte:head>
   <title>donut {token}</title>
 </svelte:head>
@@ -94,15 +88,24 @@
 {#if show}
   <div
     class="rounded overflow-hidden shadow-lg relative cursor-pointer h-screen
-      w-screen">
+      w-screen"
+  >
     <video autoplay loop muted playsinline class="object-cover h-full w-full">
       <source
         src="https://res.cloudinary.com/duvzrhfdo/video/upload/c_fill,h_250,w_270,q_100/v1595159188/1_pea_2_peas.webm"
-        type="video/webm" />
+        type="video/webm"
+      />
       <source
         src="https://res.cloudinary.com/duvzrhfdo/video/upload/c_fill,h_250,w_270,vc_h264/v1595159188/1_pea_2_peas.mp4"
-        type="video/mp4" />
+        type="video/mp4"
+      />
     </video>
     <div />
   </div>
 {/if}
+
+<style>
+  :global(body, .content, #sapper) {
+    background-color: transparent;
+  }
+</style>
