@@ -1,7 +1,8 @@
 {
     "controls": {
         "home": "Home",
-        "profile": "Profile",
+        "settings": "Settings",
+        "restaurants": "Restaurants",
         "login": "Login",
         "logout": "Logout"
     },

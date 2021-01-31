@@ -1,7 +1,8 @@
 {
     "controls": {
         "home": "Главная",
-        "profile": "Профиль",
+        "settings": "Настройки",
+        "restaurants": "Рестораны",
         "login": "Вход",
         "logout": "Выход"
     },

@@ -31,7 +31,7 @@ const app = express();
 
 app.use(session({
 	store: new redisStore({ client: redisClient }),
-	cookie: { signed: true, maxAge: 8640000000, httpOnly: true },
+	cookie: { signed: true, maxAge: , httpOnly: true },
 	secret: process.env.COOKIE_SECRET!,
 	resave: true,
 	saveUninitialized: true,
