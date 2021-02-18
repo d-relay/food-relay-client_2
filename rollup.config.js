@@ -5,6 +5,7 @@ import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
 import config from 'sapper/config/rollup';
 import svelte from 'rollup-plugin-svelte';
+import esbuild from 'rollup-plugin-esbuild'
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import dotenv from 'dotenv';
@@ -19,11 +20,19 @@ const preprocess = [sveltePreprocess({ defaults, postcss: true, sass: true })];
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const sourcemap = dev ? 'inline' : false;
+const sapperVersion = pkg.devDependencies.sapper.match(/[0-9]{1,5}/g).map(el => Number(el))
 
 const warningIsIgnored = (warning) =>
   warning.message.includes(
     'Use of eval is strongly discouraged, as it poses security risks and may cause issues with minification'
   ) || warning.message.includes('Circular dependency: node_modules');
+
+const optimizer = server => esbuild({
+  include: /\.[jt]sx?$/,
+  minify: server ? (sapperVersion[1] >= 28 && sapperVersion[2] > 0) ? false : true : true,
+  target: 'esnext'
+})
+
 
 // Workaround for https://github.com/sveltejs/sapper/issues/1266
 const onwarn = (warning, _onwarn) =>
@@ -65,6 +74,7 @@ export default {
         noEmitOnError: !dev,
         sourceMap: !!sourcemap
       }),
+      // optimizer(),
       !dev &&
       terser({
         module: true
@@ -101,7 +111,8 @@ export default {
       typescript({
         noEmitOnError: !dev,
         sourceMap: !!sourcemap
-      })
+      }),
+      // optimizer(),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||
@@ -128,6 +139,7 @@ export default {
         noEmitOnError: !dev,
         sourceMap: !!sourcemap
       }),
+      // optimizer(),
       !dev && terser()
     ],
 
