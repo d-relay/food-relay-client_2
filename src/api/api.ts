@@ -16,7 +16,6 @@ async function send<T>({ method, path, body, token }: {
     if (response.ok) {
         return response.json();
     } else {
-        console.error({ url, body, token });
         throw new Error(response.statusText);
     }
 }

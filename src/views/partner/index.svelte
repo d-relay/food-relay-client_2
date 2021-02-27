@@ -15,9 +15,9 @@
 
   function showPopup() {}
 
-  async function getPartners() {
-    const data = await partner.getPartners(token);
-    return data;
+  function getPartners() {
+    return partner.getPartners(token);
+    // return data;
   }
 </script>
 
