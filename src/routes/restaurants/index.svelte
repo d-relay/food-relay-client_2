@@ -20,7 +20,7 @@
         segment: getSegmentFromPath(params.path)
       };
     }
-  </script>
+</script>
   
   <script lang="ts">
     export let segment: string;

@@ -8,7 +8,8 @@
 
 <svelte:head>
   <title>Relay Food</title>
-</svelte:head><Nav {segment} />
+</svelte:head>
+<Nav {segment} />
 <main class="background--container">
   <h1 class="font-display text-4xl md:text-6xl text-center mb-5">
     {$format('main.title')}
